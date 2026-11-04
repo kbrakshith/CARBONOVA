@@ -1,0 +1,132 @@
+{
+  "_comment": "CARBONOVA factor register. Every record carries source, version, geography, unit, gas coverage, applicability period and status. status=provisional means NOT yet checked against the original table by a named reviewer: such factors can never produce a report labelled reviewed/assured. To promote a factor, a reviewer sets status=validated with reviewer + reviewed_on in data/factors.local.json (merged over this file by id).",
+  "register_version": "2026.11-draft",
+  "factors": [
+    {
+      "id": "EF-IN-GRID-CEA-V20",
+      "kind": "grid_electricity",
+      "activity": "Grid electricity, all-India weighted average",
+      "geography": "IN",
+      "unit": "kWh",
+      "gas_basis": "CO2",
+      "values": { "CO2": 0.716 },
+      "source": { "document": "CEA, CO2 Baseline Database for the Indian Power Sector, User Guide v20.0", "table": "All-India weighted average emission factor", "published": "2024-12", "url": "https://cea.nic.in/cdm-co2-baseline-database/?lang=en" },
+      "valid_from": "2023-04-01",
+      "valid_to": "2024-03-31",
+      "methodology": "Generation-based, CO2 only, excludes T&D losses (T&D losses are a separate Scope 3 category 3 item).",
+      "status": "provisional",
+      "notes": "Value taken from the CARBONOVA proposal (0.716 tCO2/MWh) and NOT re-checked against the CEA PDF. CEA's site now lists later versions (Version 22.0 is the newest seen, 2025-26). The engine warns when a factor's period does not cover the reporting year. Load the factor for your reporting FY via data/factors.local.json."
+    },
+
+    {
+      "id": "EF-IPCC06-DIESEL-STAT",
+      "kind": "fuel", "fuel": "diesel", "use": "stationary",
+      "activity": "Gas/diesel oil, stationary combustion (generators, boilers)",
+      "geography": "global-default", "unit": "TJ", "gas_basis": "individual_gas",
+      "ncv_gj_per_t": 43.0, "density_kg_per_l": 0.84, "ef_kg_per_tj": { "CO2": 74100, "CH4": 3, "N2O": 0.6 },
+      "source": { "document": "IPCC 2006 Guidelines Vol.2 Energy", "table": "Table 1.2 (NCV), 1.4 (CO2), 2.3 (CH4/N2O, manufacturing industries)", "published": "2006" },
+      "valid_from": "2006-01-01", "valid_to": null,
+      "methodology": "kg gas = mass(t) x NCV(GJ/t) / 1000 x EF(kg/TJ). Density 0.84 kg/L is an engineering assumption - override with the supplier's value.",
+      "status": "provisional"
+    },
+    {
+      "id": "EF-IPCC06-DIESEL-ROAD",
+      "kind": "fuel", "fuel": "diesel", "use": "mobile",
+      "activity": "Gas/diesel oil, road vehicles",
+      "geography": "global-default", "unit": "TJ", "gas_basis": "individual_gas",
+      "ncv_gj_per_t": 43.0, "density_kg_per_l": 0.84, "ef_kg_per_tj": { "CO2": 74100, "CH4": 3.9, "N2O": 3.9 },
+      "source": { "document": "IPCC 2006 Guidelines Vol.2 Energy", "table": "Table 1.2, 1.4, 3.2.1/3.2.2 (uncontrolled road)", "published": "2006" },
+      "valid_from": "2006-01-01", "valid_to": null,
+      "methodology": "As stationary; CH4/N2O from mobile combustion table.",
+      "status": "provisional"
+    },
+    {
+      "id": "EF-IPCC06-PETROL-STAT",
+      "kind": "fuel", "fuel": "petrol", "use": "stationary",
+      "activity": "Motor gasoline, stationary combustion",
+      "geography": "global-default", "unit": "TJ", "gas_basis": "individual_gas",
+      "ncv_gj_per_t": 44.3, "density_kg_per_l": 0.745, "ef_kg_per_tj": { "CO2": 69300, "CH4": 3, "N2O": 0.6 },
+      "source": { "document": "IPCC 2006 Guidelines Vol.2 Energy", "table": "Table 1.2, 1.4, 2.3", "published": "2006" },
+      "valid_from": "2006-01-01", "valid_to": null,
+      "methodology": "As diesel. Density 0.745 kg/L is an engineering assumption.",
+      "status": "provisional"
+    },
+    {
+      "id": "EF-IPCC06-PETROL-ROAD",
+      "kind": "fuel", "fuel": "petrol", "use": "mobile",
+      "activity": "Motor gasoline, road vehicles",
+      "geography": "global-default", "unit": "TJ", "gas_basis": "individual_gas",
+      "ncv_gj_per_t": 44.3, "density_kg_per_l": 0.745, "ef_kg_per_tj": { "CO2": 69300, "CH4": 33, "N2O": 3.2 },
+      "source": { "document": "IPCC 2006 Guidelines Vol.2 Energy", "table": "Table 1.2, 1.4, 3.2.1/3.2.2 (uncontrolled road)", "published": "2006" },
+      "valid_from": "2006-01-01", "valid_to": null,
+      "methodology": "As diesel.",
+      "status": "provisional"
+    },
+    {
+      "id": "EF-IPCC06-LPG-STAT",
+      "kind": "fuel", "fuel": "lpg", "use": "stationary",
+      "activity": "Liquefied petroleum gas, stationary combustion",
+      "geography": "global-default", "unit": "TJ", "gas_basis": "individual_gas",
+      "ncv_gj_per_t": 47.3, "density_kg_per_l": 0.54, "ef_kg_per_tj": { "CO2": 63100, "CH4": 1, "N2O": 0.1 },
+      "source": { "document": "IPCC 2006 Guidelines Vol.2 Energy", "table": "Table 1.2, 1.4, 2.3", "published": "2006" },
+      "valid_from": "2006-01-01", "valid_to": null,
+      "methodology": "Quantities are normally entered in kg (cylinder weight).",
+      "status": "provisional"
+    },
+    {
+      "id": "EF-IPCC06-NG-STAT",
+      "kind": "fuel", "fuel": "natural_gas", "use": "stationary",
+      "activity": "Natural gas, stationary combustion",
+      "geography": "global-default", "unit": "TJ", "gas_basis": "individual_gas",
+      "ncv_gj_per_t": 48.0, "density_kg_per_l": null, "ef_kg_per_tj": { "CO2": 56100, "CH4": 1, "N2O": 0.1 },
+      "source": { "document": "IPCC 2006 Guidelines Vol.2 Energy", "table": "Table 1.2, 1.4, 2.3", "published": "2006" },
+      "valid_from": "2006-01-01", "valid_to": null,
+      "methodology": "Enter in kg or t (use the GAIL/CGD bill's mass or convert SCM using the supplier's density). Volume (L) is rejected.",
+      "status": "provisional"
+    },
+    {
+      "id": "EF-IPCC06-FO-STAT",
+      "kind": "fuel", "fuel": "furnace_oil", "use": "stationary",
+      "activity": "Residual fuel oil (furnace oil), stationary combustion",
+      "geography": "global-default", "unit": "TJ", "gas_basis": "individual_gas",
+      "ncv_gj_per_t": 40.4, "density_kg_per_l": 0.95, "ef_kg_per_tj": { "CO2": 77400, "CH4": 3, "N2O": 0.6 },
+      "source": { "document": "IPCC 2006 Guidelines Vol.2 Energy", "table": "Table 1.2, 1.4, 2.3", "published": "2006" },
+      "valid_from": "2006-01-01", "valid_to": null,
+      "methodology": "Density 0.95 kg/L is an engineering assumption.",
+      "status": "provisional"
+    },
+    {
+      "id": "EF-IPCC06-COAL-STAT",
+      "kind": "fuel", "fuel": "coal", "use": "stationary",
+      "activity": "Other bituminous coal, stationary combustion",
+      "geography": "global-default", "unit": "TJ", "gas_basis": "individual_gas",
+      "ncv_gj_per_t": 25.8, "density_kg_per_l": null, "ef_kg_per_tj": { "CO2": 94600, "CH4": 10, "N2O": 1.5 },
+      "source": { "document": "IPCC 2006 Guidelines Vol.2 Energy", "table": "Table 1.2, 1.4, 2.3", "published": "2006" },
+      "valid_from": "2006-01-01", "valid_to": null,
+      "methodology": "IPCC default NCV is higher than many Indian coals: supply the lab/invoice NCV (ncv_override_gj_per_t) whenever available.",
+      "status": "provisional"
+    },
+    {
+      "id": "EF-IPCC06-PETCOKE-STAT",
+      "kind": "fuel", "fuel": "petcoke", "use": "stationary",
+      "activity": "Petroleum coke, stationary combustion",
+      "geography": "global-default", "unit": "TJ", "gas_basis": "individual_gas",
+      "ncv_gj_per_t": 32.5, "density_kg_per_l": null, "ef_kg_per_tj": { "CO2": 97500, "CH4": 3, "N2O": 0.6 },
+      "source": { "document": "IPCC 2006 Guidelines Vol.2 Energy", "table": "Table 1.2, 1.4, 2.3", "published": "2006" },
+      "valid_from": "2006-01-01", "valid_to": null,
+      "methodology": "Supply invoice NCV where available.",
+      "status": "provisional"
+    },
+    {
+      "id": "EF-IPCC06-WOOD-STAT",
+      "kind": "fuel", "fuel": "biomass_wood", "use": "stationary",
+      "activity": "Wood / wood waste, stationary combustion",
+      "geography": "global-default", "unit": "TJ", "gas_basis": "individual_gas", "biogenic": true,
+      "ncv_gj_per_t": 15.6, "density_kg_per_l": null, "ef_kg_per_tj": { "CO2": 112000, "CH4": 30, "N2O": 4 },
+      "source": { "document": "IPCC 2006 Guidelines Vol.2 Energy", "table": "Table 1.2, 1.4, 2.3", "published": "2006" },
+      "valid_from": "2006-01-01", "valid_to": null,
+      "methodology": "CO2 is biogenic: reported separately, NOT added to Scope 1 totals. CH4 and N2O are counted.",
+      "status": "provisional"
+    }
+  ]
+}

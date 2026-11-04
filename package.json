@@ -1,0 +1,15 @@
+{
+  "name": "carbonova",
+  "version": "0.2.0",
+  "description": "Carbon footprint and industry stage-wise waste accounting for Indian MSMEs (GHG Protocol, BRSR Principle 6, CEA/IPCC factors)",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test \"test/*.test.js\"",
+    "factors:check": "node scripts/check-factors.js",
+    "demo": "node scripts/demo.js"
+  },
+  "license": "UNLICENSED"
+}

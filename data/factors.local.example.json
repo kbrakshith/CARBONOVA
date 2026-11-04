@@ -1,0 +1,21 @@
+{
+  "_comment": "Copy to data/factors.local.json (git-ignored) to override or add factors by id. Replace every REPLACE value from the ORIGINAL source table, then set status to validated with your name and date. Do not validate from memory.",
+  "factors": [
+    {
+      "id": "EF-IN-GRID-CEA-LATEST",
+      "kind": "grid_electricity",
+      "activity": "Grid electricity, all-India weighted average",
+      "geography": "IN",
+      "unit": "kWh",
+      "gas_basis": "CO2",
+      "values": { "CO2": 0.0 },
+      "source": { "document": "CEA CO2 Baseline Database User Guide, REPLACE version", "table": "REPLACE table name", "published": "REPLACE yyyy-mm", "url": "https://cea.nic.in/cdm-co2-baseline-database/?lang=en" },
+      "valid_from": "2025-04-01",
+      "valid_to": "2026-03-31",
+      "methodology": "REPLACE: generation basis, gases covered, T&D treatment as stated by CEA.",
+      "status": "provisional",
+      "reviewer": null,
+      "reviewed_on": null
+    }
+  ]
+}
